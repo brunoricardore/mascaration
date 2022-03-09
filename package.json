@@ -1,6 +1,6 @@
 {
   "name": "mascus",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simpler string formatter",
   "main": "src/index.ts",
   "types": "./dist/index.d.ts",
