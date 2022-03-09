@@ -1,0 +1,24 @@
+{
+  "name": "mascus",
+  "version": "0.0.2",
+  "description": "Simpler string formatter",
+  "main": "src/index.ts",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -b"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunoricardore/mascus.git"
+  },
+  "author": "Bruno Ricardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunoricardore/mascus/issues"
+  },
+  "homepage": "https://github.com/brunoricardore/mascus#readme",
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  }
+}
