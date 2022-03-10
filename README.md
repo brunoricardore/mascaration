@@ -1,21 +1,22 @@
-# MASCUS
+# MASCARATION
 #### It is a simple string formatter
-#### We have types
+#### We have typescript definitions
 
 
 To install:
 ```shell
-npm i -S mascus
+npm i -S mascaration
 ```
 
 The usage is very simple:
 
 ```ts
-// mask to 88132-015
-import {formatter} from 'mascus';
+// mask to 88130-000
+import {formatter} from 'mascaration';
 const value = formatter('#####-###', '88130000');
-
-// unmask to 
-import { unmask } from 'mascus';
+// You can also use array of masks, it find the best match and uses it.
+const comNonoDigito = formatter(['(##) #####-####', '(##) ####-####'], '2144440102');
+const semNonoDigito = formatter(['(##) #####-####', '(##) ####-####'], '21944440102');
+// unmask to 88130000
 const value = unmask('88130-000');
 ```
