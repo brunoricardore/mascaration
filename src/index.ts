@@ -13,15 +13,19 @@ function formatter(mask: string | string[], value: string, maskChar: string = '#
   const splitted_value = value.split('');
   let finalMask = '';
 
+  const regex = new RegExp(`[^${maskChar}]`, 'g');
+
   if (Array.isArray(mask)) {
     let bestMask = mask
       .map(m => {
-        const onlyMaskChars = m.replace(new RegExp(`/[^${maskChar}]/g`), '');
+        const onlyMaskChars = m.replace(regex, '');
         return {
           mask: m,
+          clearedMask: onlyMaskChars,
           length: onlyMaskChars.length
         }
       }).sort((a, b) => Math.abs(a.length - splitted_value.length) - Math.abs(b.length - splitted_value.length));
+    
       finalMask = bestMask[0].mask;
   } else {
     finalMask = mask.toString();

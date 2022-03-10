@@ -1,11 +1,12 @@
 {
-  "name": "mascus",
-  "version": "0.0.3",
+  "name": "@brunoricardo/formatter",
+  "version": "0.0.1",
   "description": "Simpler string formatter",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-test": "npm run build && npm run compile",
+    "compile": "tsc ./src/test.ts && node ./src/test.js",
     "build": "tsc -b"
   },
   "repository": {

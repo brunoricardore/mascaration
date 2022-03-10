@@ -5,5 +5,9 @@
     "strict": true,   
     "outDir": "dist",
     "declaration": true
-  }
+  },
+  "exclude": [
+    "./src/test.ts",
+    "./dist/*"
+  ]
 }
