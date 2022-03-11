@@ -38,7 +38,7 @@ function formatter(mask: string | string[], value: string, maskChar: string = '#
   let skipLength = 0;
   for (let index = 0; index < splitted_mask.length; index++) {
 
-    if (splitted_mask[index] !== '#') {
+    if (splitted_mask[index] !== maskChar) {
       formatted[index] = splitted_mask[index];
       skipLength++;
       continue;
@@ -55,7 +55,7 @@ function formatter(mask: string | string[], value: string, maskChar: string = '#
  * @returns string 12312312311
  */
 function unmask(maskedValue: string): string {
-  return maskedValue.replace(/[\D]/, '');
+  return maskedValue.replace(/[\D]/g, '');
 }
 
 

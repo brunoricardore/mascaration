@@ -51,6 +51,6 @@ exports.formatter = formatter;
  * @returns string 12312312311
  */
 function unmask(maskedValue) {
-    return maskedValue.replace(/[\D]/, '');
+    return maskedValue.replace(/[\D]/g, '');
 }
 exports.unmask = unmask;

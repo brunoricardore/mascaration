@@ -1,4 +1,4 @@
-import {formatter} from '../dist/index';
+import {formatter, unmask} from '../dist/index';
 
 const value = formatter(['###.###.###-##', '##.###.###/####-##'], '08579443989');
 const value2 = formatter(['###.###.###-##', '##.###.###/####-##'], '42554918000122');
@@ -9,3 +9,5 @@ const comNonoDigito = formatter(['(##) #####-####', '(##) ####-####'], '48913385
 const semNonoDigito = formatter(['(##) #####-####', '(##) ####-####'], '48991338594');
 
 console.log('TELEFONE => ', comNonoDigito, semNonoDigito);
+
+console.log(unmask(comNonoDigito), unmask(semNonoDigito));

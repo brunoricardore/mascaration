@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+var index_1 = require("../dist/index");
+var value = (0, index_1.formatter)(['###.###.###-##', '##.###.###/####-##'], '08579443989');
+var value2 = (0, index_1.formatter)(['###.###.###-##', '##.###.###/####-##'], '42554918000122');
+var value3 = (0, index_1.formatter)(['###.###.###-##', '##.###.###/####-##', '#####-###'], '42554918000122');
+console.log('DOCS => ', value, value2, value3);
+var comNonoDigito = (0, index_1.formatter)(['(##) #####-####', '(##) ####-####'], '4891338594');
+var semNonoDigito = (0, index_1.formatter)(['(##) #####-####', '(##) ####-####'], '48991338594');
+console.log('TELEFONE => ', comNonoDigito, semNonoDigito);
+console.log((0, index_1.unmask)(comNonoDigito), (0, index_1.unmask)(semNonoDigito));
