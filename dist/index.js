@@ -17,7 +17,7 @@ function formatter(mask, value, maskChar, placeholderChar) {
     var finalMask = '';
     var regex = new RegExp("[^".concat(maskChar, "]"), 'g');
     if (Array.isArray(mask)) {
-        var bestMask = mask
+        var mappedMasks = mask
             .map(function (m) {
             var onlyMaskChars = m.replace(regex, '');
             return {
@@ -26,9 +26,15 @@ function formatter(mask, value, maskChar, placeholderChar) {
                 length: onlyMaskChars.length,
                 lengthDistance: (onlyMaskChars.length - value.length)
             };
-        }).filter(function (a) { return a.lengthDistance >= 0; })
-            .sort(function (a, b) { return a.lengthDistance - b.lengthDistance; })[0];
-        finalMask = bestMask.mask;
+        });
+        // console.log(mappedMasks);
+        // console.log('--------------');
+        var perfectMatchMask = mappedMasks.filter(function (m) { return m.lengthDistance === 0; })[0];
+        var nextMask = mappedMasks.filter(function (m) { return m.lengthDistance >= 0; }).sort(function (a, b) { return a.lengthDistance - b.lengthDistance; })[0];
+        var previousMask = mappedMasks.sort(function (a, b) { return b.lengthDistance - a.lengthDistance; })[0];
+        // console.log({value, perfectMatchMask, nextMask, previousMask});
+        // if(perfectMatchMask) finalMask = perfectMatchMask.mask;
+        finalMask = (perfectMatchMask === null || perfectMatchMask === void 0 ? void 0 : perfectMatchMask.mask) || (nextMask === null || nextMask === void 0 ? void 0 : nextMask.mask) || (previousMask === null || previousMask === void 0 ? void 0 : previousMask.mask);
     }
     else {
         finalMask = mask.toString();

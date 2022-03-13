@@ -1,13 +1,19 @@
 import {formatter, unmask} from '../dist/index';
 
-const value = formatter(['###.###.###-##', '##.###.###/####-##'], '08579443989');
-const value2 = formatter(['###.###.###-##', '##.###.###/####-##'], '42554918000122');
-const value3 = formatter(['###.###.###-##', '##.###.###/####-##', '#####-###'], '42554918000122');
-console.log('DOCS => ',value, value2, value3);
+const values = [];
 
-const comNonoDigito = formatter(['(##) #####-####', '(##) ####-####'], '4891338594');
-const semNonoDigito = formatter(['(##) #####-####', '(##) ####-####'], '48991338594');
 
-console.log('TELEFONE => ', comNonoDigito, semNonoDigito);
+values[0] = formatter(['###.###.###-##', '##.###.###/####-##', '#####-###'], '08579443989');
+values[1] = formatter(['###.###.###-##', '##.###.###/####-##', '#####-###'], '88132015');
+values[2] = formatter(['###.###.###-##', '##.###.###/####-##', '#####-###'], '42554918000122');
+values[3] = formatter(['###.###.###-##', '##.###.###/####-##', '#####-###'], '4255491800012212345');
 
-console.log(unmask(comNonoDigito), unmask(semNonoDigito));
+values[4] = formatter(['(##) #####-####', '(##) ####-####'], '4891338594');
+values[5] = formatter(['(##) #####-####', '(##) ####-####'], '48991338594');
+
+values[6] = formatter(['###.###.###-##', '##.###.###/####-##', '#####-###'], '0857944398');
+values[7] = formatter(['###.###.###-##', '##.###.###/####-##', '#####-###'], '425549180001');
+
+console.log(values);
+
+console.log(values.map(v => unmask(v)));

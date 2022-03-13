@@ -17,7 +17,7 @@ function formatter(mask: string | string[], value: string, maskChar: string = '#
 
   if (Array.isArray(mask)) {
 
-    let bestMask = mask
+    let mappedMasks = mask
       .map(m => {
         const onlyMaskChars = m.replace(regex, '');
         return {
@@ -26,10 +26,23 @@ function formatter(mask: string | string[], value: string, maskChar: string = '#
           length: onlyMaskChars.length,
           lengthDistance: (onlyMaskChars.length - value.length)
         }
-      }).filter(a => a.lengthDistance >= 0)
-      .sort((a, b) => a.lengthDistance - b.lengthDistance)[0];
+      });
+
+      // console.log(mappedMasks);
+
+      // console.log('--------------');
+
+      const perfectMatchMask = mappedMasks.filter(m => m.lengthDistance === 0)[0];
+      const nextMask = mappedMasks.filter(m => m.lengthDistance >= 0).sort((a,b) => a.lengthDistance - b.lengthDistance)[0];
+      const previousMask = mappedMasks.sort((a,b) => b.lengthDistance - a.lengthDistance)[0];
+
+      // console.log({value, perfectMatchMask, nextMask, previousMask});
     
-      finalMask = bestMask.mask;
+      // if(perfectMatchMask) finalMask = perfectMatchMask.mask;
+
+      finalMask = perfectMatchMask?.mask || nextMask?.mask || previousMask?.mask;
+
+
   } else {
     finalMask = mask.toString();
   }
