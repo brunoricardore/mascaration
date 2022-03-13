@@ -23,10 +23,12 @@ function formatter(mask, value, maskChar, placeholderChar) {
             return {
                 mask: m,
                 clearedMask: onlyMaskChars,
-                length: onlyMaskChars.length
+                length: onlyMaskChars.length,
+                lengthDistance: (onlyMaskChars.length - value.length)
             };
-        }).sort(function (a, b) { return Math.abs(a.length - splitted_value.length) - Math.abs(b.length - splitted_value.length); });
-        finalMask = bestMask[0].mask;
+        }).filter(function (a) { return a.lengthDistance >= 0; })
+            .sort(function (a, b) { return a.lengthDistance - b.lengthDistance; })[0];
+        finalMask = bestMask.mask;
     }
     else {
         finalMask = mask.toString();
@@ -35,7 +37,7 @@ function formatter(mask, value, maskChar, placeholderChar) {
     var splitted_mask = finalMask.split('');
     var skipLength = 0;
     for (var index = 0; index < splitted_mask.length; index++) {
-        if (splitted_mask[index] !== '#') {
+        if (splitted_mask[index] !== maskChar) {
             formatted[index] = splitted_mask[index];
             skipLength++;
             continue;
@@ -51,6 +53,6 @@ exports.formatter = formatter;
  * @returns string 12312312311
  */
 function unmask(maskedValue) {
-    return maskedValue.replace(/[\D]/g, '');
+    return maskedValue.replace(/[ˆ0-9]/g, '');
 }
 exports.unmask = unmask;

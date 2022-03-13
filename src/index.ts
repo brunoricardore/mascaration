@@ -16,17 +16,20 @@ function formatter(mask: string | string[], value: string, maskChar: string = '#
   const regex = new RegExp(`[^${maskChar}]`, 'g');
 
   if (Array.isArray(mask)) {
+    
     let bestMask = mask
       .map(m => {
         const onlyMaskChars = m.replace(regex, '');
         return {
           mask: m,
           clearedMask: onlyMaskChars,
-          length: onlyMaskChars.length
+          length: onlyMaskChars.length,
+          lengthDistance: (onlyMaskChars.length - value.length)
         }
-      }).sort((a, b) => Math.abs(a.length - splitted_value.length) - Math.abs(b.length - splitted_value.length));
+      }).filter(a => a.lengthDistance >= 0)
+      .sort((a, b) => a.lengthDistance - b.lengthDistance)[0];
     
-      finalMask = bestMask[0].mask;
+      finalMask = bestMask.mask;
   } else {
     finalMask = mask.toString();
   }
