@@ -53,6 +53,6 @@ exports.formatter = formatter;
  * @returns string 12312312311
  */
 function unmask(maskedValue) {
-    return maskedValue.replace(/[ˆ0-9]/g, '');
+    return maskedValue.replace(/[^0-9]/g, '');
 }
 exports.unmask = unmask;

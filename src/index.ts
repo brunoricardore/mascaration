@@ -16,7 +16,7 @@ function formatter(mask: string | string[], value: string, maskChar: string = '#
   const regex = new RegExp(`[^${maskChar}]`, 'g');
 
   if (Array.isArray(mask)) {
-    
+
     let bestMask = mask
       .map(m => {
         const onlyMaskChars = m.replace(regex, '');
@@ -58,7 +58,7 @@ function formatter(mask: string | string[], value: string, maskChar: string = '#
  * @returns string 12312312311
  */
 function unmask(maskedValue: string): string {
-  return maskedValue.replace(/[ˆ0-9]/g, '');
+  return maskedValue.replace(/[^0-9]/g, '');
 }
 
 
