@@ -55,7 +55,7 @@ function formatter(mask: string | string[], value: string, maskChar: string = '#
  * @returns string 12312312311
  */
 function unmask(maskedValue: string): string {
-  return maskedValue.replace(/[\D]/g, '');
+  return maskedValue.replace(/[ˆ0-9]/g, '');
 }
 
 
