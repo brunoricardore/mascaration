@@ -12,7 +12,7 @@ The usage is very simple:
 
 ```ts
 // mask to 88130-000
-import {formatter} from 'mascaration';
+import {formatter, unmask} from 'mascaration';
 const value = formatter('#####-###', '88130000');
 // You can also use array of masks, it find the best match and uses it.
 const comNonoDigito = formatter(['(##) #####-####', '(##) ####-####'], '2144440102');
